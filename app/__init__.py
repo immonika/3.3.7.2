@@ -3,9 +3,12 @@ from flask import Flask, render_template, send_from_directory, request, flash
 from flask_wtf import Form
 from wtforms import TextField, BooleanField, TextAreaField, SubmitField, validators, ValidationError
 from dotenv import load_dotenv
+from . import db
 
 load_dotenv()
 app = Flask(__name__)
+app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
+db.init_app(app)
 app.secret_key = 'development identification key'
 
 @app.route('/')
