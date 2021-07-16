@@ -2,6 +2,8 @@ import os
 from flask import Flask, render_template, send_from_directory, request, flash
 from flask_wtf import Form
 from wtforms import TextField, BooleanField, TextAreaField, SubmitField, validators, ValidationError
+from werkzeug.security import check_password_hash, generate_password_hash
+from app.db import get_db
 from dotenv import load_dotenv
 import os
 # from flask import Flask, request, render_template
@@ -91,11 +93,10 @@ def register():
             return error, 418
 
     ## TODO: Return a restister page
-    return "Register Page not yet implemented", 501
+    return render_template('register.html', title="Register")
 
 #...
-from werkzeug.security import check_password_hash, generate_password_hash
-from app.db import get_db
+
 
 #...
 
@@ -121,4 +122,4 @@ def login():
             return error, 418
     
     ## TODO: Return a login page
-    return "Login Page not yet implemented", 501
+    return render_template('login.html', title="Login")
